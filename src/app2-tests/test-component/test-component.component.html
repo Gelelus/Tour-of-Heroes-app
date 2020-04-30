@@ -1,0 +1,8 @@
+<button (click) = 'onClickButton()'>Display Detalls</button>
+<p
+  *ngFor="let detall of detalls; let i = index"
+  [ngClass]="{ blue: i >= 5 }"
+>
+  {{ SecretPassword + detall }}
+</p>
+<p>button clicked {{ howMany }} times</p>

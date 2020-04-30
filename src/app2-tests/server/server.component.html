@@ -1,0 +1,8 @@
+<!-- ngStyle добовляет стили в зависимости от значения переменной -->
+<!-- ngClass добовляет класс в зависимости от значения переменной -->
+<p
+  [ngStyle]="{ backgroundColor: getColor() }"
+  [ngClass]="{ online: serverStatus === 'online' }"
+>
+  {{ "Server" }} with ID {{ serverId }} is {{ getServerStatus() }}
+</p>

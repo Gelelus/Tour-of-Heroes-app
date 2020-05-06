@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hero } from '../shared/hero.model';
-import { Observable, of } from 'rxjs'; 
+import { Observable, of, throwError } from 'rxjs'; 
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap} from 'rxjs/operators'; 
@@ -21,7 +21,7 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
-      tap((_) => this.log('fetched heroes')), // просто функция  принимающая callback, который вызывается при выполнеии метода pipe
+      tap((_) => this.log('fetched heroes')), 
       catchError(this.handleError<Hero[]>('getHeroes', []))
     );
   }
@@ -81,7 +81,7 @@ export class HeroService {
       this.log(`${operation} failed: ${error.message}`);
       
       if (!result) {
-        throw new Error(`${operation} failed: ${error.message}`);
+        return throwError(`${operation} failed: ${error.message}`);
       }
       console.error(error);
 
